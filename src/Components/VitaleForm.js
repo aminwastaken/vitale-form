@@ -121,6 +121,7 @@ const MyForm = (props) => {
                 name="dateOfBirth"
                 label="Date de naissance"
                 maxDate={date}
+                format="dd/MM/yyyy"
                 dateFunsUtils={DateFnsUtils}
                 required={true}
               />
@@ -160,6 +161,7 @@ const MyForm = (props) => {
               Submit
             </Button>
             {message}
+            {JSON.stringify(values, 0, 2)}
           </form>
         )}
       />
