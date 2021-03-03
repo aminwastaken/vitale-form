@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import VitaleForm from './Components/VitaleForm';
-import FormTest from './FormTest';
+import MultiStepForm from './Pages/MultiStepForm';
+
+import React, { useState } from 'react';
 
 function App() {
-  return <VitaleForm />;
+  return <MultiStepForm />;
 }
 
 export default App;
