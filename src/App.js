@@ -1,5 +1,5 @@
 import './App.css';
-import MultiStepForm from './Pages/MultiStepForm';
+import MultiStepForm from './pages/MultiStepForm';
 
 import React, { useState } from 'react';
 

@@ -2,7 +2,7 @@ import { Field } from 'react-final-form';
 import { KeyboardDatePicker, Radios, Select } from 'mui-rff';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import CustomTextfield from '../../../Components/CustomTextfield';
+import CustomTextfield from '../../../components/CustomTextfield';
 import normalizeSsn from '../../../utils/normalizeSsn';
 import departments from '../../../data/dapartments';
 import { MenuItem, Button } from '@material-ui/core';
