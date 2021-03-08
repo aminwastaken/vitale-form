@@ -15,7 +15,7 @@ function CustomTextfield({
       inputOnChange && inputOnChange(e);
     },
   };
-  return <TextField {...input} {...inputProps} {...rest} />;
+  return <TextField {...input} {...inputProps} {...rest} color="secondary" />;
 }
 
 export default CustomTextfield;

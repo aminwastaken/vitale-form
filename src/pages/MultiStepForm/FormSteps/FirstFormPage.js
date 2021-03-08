@@ -1,15 +1,18 @@
 import { Field } from 'react-final-form';
-import { KeyboardDatePicker, Radios, Select } from 'mui-rff';
+import { Select } from 'mui-rff';
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
 import CustomTextfield from '../../../components/CustomTextfield';
 import normalizeSsn from '../../../utils/normalizeSsn';
 import departments from '../../../data/dapartments';
 import { MenuItem, Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import CustomRadioButtonGroup from '../../../components/CustomRadioButtonGroup';
+import CustomDatePicker from '../../../components/CustomDatePicker';
+import CustomSelect from '../../../components/CustomSelect';
 
 const FirstFormPage = () => {
-  let date = new Date();
-  date.setFullYear(date.getFullYear() + -16);
+  let maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() + -16);
   const departmentMenuItems = departments.map((department) => {
     return (
       <MenuItem key={department.num_dep} value={department.num_dep}>
@@ -18,56 +21,56 @@ const FirstFormPage = () => {
     );
   });
   return (
-    <>
-      <div className="input-container">
-        <Field
-          label="Prenom"
-          name="firstName"
-          component={CustomTextfield}
-          required={true}
-        />
-      </div>
-      <div className="input-container">
-        <Field
-          label="Nom"
-          name="lastName"
-          component={CustomTextfield}
-          required={true}
-        />
-      </div>
-      <div className="input-container">
-        <KeyboardDatePicker
-          name="dateOfBirth"
-          label="Date de naissance"
-          maxDate={date}
-          format="dd/MM/yyyy"
-          dateFunsUtils={DateFnsUtils}
-          required={true}
-        />
-      </div>
-      <div className="input-container">
-        <Radios
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <CustomRadioButtonGroup
           label="Civilité"
           name="gender"
-          required={true}
           data={[
             { label: 'M', value: 'm' },
             { label: 'Mme', value: 'mme' },
             { label: 'Mlle', value: 'mlle' },
           ]}
         />
-      </div>
-      <div className="input-container">
-        <Select
-          name="DepartmentOfBirth"
-          label="Départements de naissance"
-          formControlProps={{ margin: 'normal' }}
+      </Grid>
+      <Grid item xs={6}>
+        <Field
+          label="Prenom"
+          name="firstName"
+          component={CustomTextfield}
           required={true}
-        >
-          {departmentMenuItems}
-        </Select>
-      </div>
-      <div className="input-container">
+        />
+      </Grid>
+      <Grid item xs={6}>
+        <Field
+          label="Nom"
+          name="lastName"
+          component={CustomTextfield}
+          required={true}
+        />
+      </Grid>
+
+      <Grid item xs={6}>
+        <Field
+          name="DepartmentOfBirth"
+          label="Département de naissance"
+          component={CustomSelect}
+          required={true}
+          items={departments}
+        />
+      </Grid>
+      <Grid item xs={6}>
+        <Field
+          name="dateOfBirth"
+          label="Date de naissance"
+          language="fr"
+          dateFormat="yyy/MM/dd"
+          component={CustomDatePicker}
+          required={true}
+          maxDate={maxDate}
+        />
+      </Grid>
+      <Grid item xs={12}>
         <Field
           label="Numéro de sécurité sociale"
           name="socialSecurityNumber"
@@ -75,8 +78,8 @@ const FirstFormPage = () => {
           parse={normalizeSsn}
           required={true}
         />
-      </div>
-    </>
+      </Grid>
+    </Grid>
   );
 };
 
